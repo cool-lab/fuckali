@@ -22,7 +22,6 @@ if __name__ == "__main__":
             data_holiday.append(
                 [int(month), int(line_list[1]), int(line_list[3])])
             day_map[line_list[0]] = i
-    print data_holiday.__len__()
 
     with open("weather2.csv", "rU") as fr2:
         reader = csv.reader(fr2)
@@ -52,7 +51,6 @@ if __name__ == "__main__":
                 print "not valuable data"
                 raise
 
-    print data, data.__len__()
     with open('data.csv', 'wb') as f:
         writer = csv.writer(f)
         line = ['record_date', 'month', 'weekday',
@@ -68,3 +66,33 @@ if __name__ == "__main__":
                 line_list[1:1] = data[index]
 
                 writer.writerow(line_list)
+
+    with open('data_sum.csv', 'wb') as f:
+        writer = csv.writer(f)
+        line = ['record_date', 'month', 'weekday',
+                'holiday', 'temp_high', 'temp_low', 'weather', 'wind', 'power_consumption']
+        writer.writerow(line)
+
+        pf = pd.read_csv("Tianchi_power-1.csv")
+        pp = pf.groupby(["record_date"])['power_consumption'].sum()
+
+        for i,row in enumerate(pp):
+            index=day_map[pp.index[i]]
+
+            line=[pp.index[i],row]
+            line[1:1]=data[index]
+
+            writer.writerow(line)
+
+
+
+
+
+
+
+
+
+
+
+
+
