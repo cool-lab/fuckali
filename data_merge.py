@@ -55,8 +55,8 @@ if __name__ == "__main__":
     print data, data.__len__()
     with open('data.csv', 'wb') as f:
         writer = csv.writer(f)
-        line = ['record_date', 'user_id', 'month', 'weekday',
-                'holiday', 'temp_high', 'temp_low', 'weather', 'wind']
+        line = ['record_date', 'month', 'weekday',
+                'holiday', 'temp_high', 'temp_low', 'weather', 'wind', 'user_id', 'power_consumption']
         writer.writerow(line)
 
         with open("Tianchi_power.csv", "rU") as fr:
