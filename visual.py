@@ -1,3 +1,4 @@
+#encoding:utf-8
 import csv
 
 import matplotlib.pyplot as plt
@@ -17,5 +18,10 @@ if __name__ == "__main__":
     data[1:610].plot(y='power_consumption', grid=True)
     plt.figure(2)
     data[data.user_id == 1416].plot(y='power_consumption', grid=True)
+
+    plt.figure(3)
+    data_sum = pd.read_csv('data_sum.csv', parse_dates=True, index_col=0)
+
+    data_sum.plot( grid=True)
 
     plt.show()
